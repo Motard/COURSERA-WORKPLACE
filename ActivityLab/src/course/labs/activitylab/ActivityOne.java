@@ -54,7 +54,7 @@ public class ActivityOne extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO:
+				
 				// Launch Activity Two
 				// Hint: use Context's startActivity() method
 
@@ -80,7 +80,7 @@ public class ActivityOne extends Activity {
 		}
 
 		// TODO: Emit LogCat message
-
+		Log.i(TAG, "Entered the OnCreate() method");
 
 	
 		// Update the appropriate count variable
