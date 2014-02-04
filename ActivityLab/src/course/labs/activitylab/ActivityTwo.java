@@ -79,8 +79,8 @@ public class ActivityTwo extends Activity {
 
 		}
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onCreate() method");
 
 
 		
@@ -97,8 +97,8 @@ public class ActivityTwo extends Activity {
 	public void onStart() {
 		super.onStart();
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onStart() method");
 
 		// Update the appropriate count variable
 		// Update the user interface
@@ -112,8 +112,8 @@ public class ActivityTwo extends Activity {
 	public void onResume() {
 		super.onResume();
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onResume() method");
 
 		// Update the appropriate count variable
 		// Update the user interface
@@ -128,8 +128,8 @@ public class ActivityTwo extends Activity {
 	public void onPause() {
 		super.onPause();
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onPause() method");
 
 
 	}
@@ -138,8 +138,8 @@ public class ActivityTwo extends Activity {
 	public void onStop() {
 		super.onStop();
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onStop() method");
 
 
 	}
@@ -148,10 +148,10 @@ public class ActivityTwo extends Activity {
 	public void onRestart() {
 		super.onRestart();
 
-		// TODO: Emit LogCat message
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onRestart() method");
 
-
-		// TODO:
+		
 		// Update the appropriate count variable
 		// Update the user interface
 		mRestart++;
@@ -164,8 +164,8 @@ public class ActivityTwo extends Activity {
 	public void onDestroy() {
 		super.onDestroy();
 
-		// TODO: Emit LogCat message
-
+		//Emit LogCat message
+		Log.i(TAG, "Entered the onDestroy() method");
 	}
 
 	@Override
