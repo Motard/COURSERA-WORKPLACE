@@ -2,12 +2,14 @@ package course.labs.todomanager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -85,26 +87,34 @@ public class ToDoListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 
-		//TODO - Get the current ToDoItem
-		final ToDoItem toDoItem = null;
+		//- Get the current ToDoItem
+		final ToDoItem toDoItem = (ToDoItem)getItem(position);
 
-		//TODO - Inflate the View for this ToDoItem
+		//- Inflate the View for this ToDoItem
 		// from todo_item.xml.
-		RelativeLayout itemLayout = null;
+		LayoutInflater myInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		RelativeLayout itemLayout = (RelativeLayout) myInflater.inflate(R.layout.todo_item, null);
 		
-		//TODO - Fill in specific ToDoItem data
+		//- Fill in specific ToDoItem data
 		// Remember that the data that goes in this View
 		// corresponds to the user interface elements defined 
 		// in the layout file 
-
-		//TODO - Display Title in TextView
+		((TextView)itemLayout.findViewById(R.id.titleView)).setText(toDoItem.getTitle());
+		((TextView)itemLayout.findViewById(R.id.DateLabel)).setText(toDoItem.getDate().toString());
+		((TextView)itemLayout.findViewById(R.id.StatusLabel)).setText(toDoItem.getStatus().toString());
+		((TextView)itemLayout.findViewById(R.id.PriorityLabel)).setText(toDoItem.getPriority().toString());
+		
+		//- Display Title in TextView
 
 		final TextView titleView = null;
 		
-		// TODO - Set up Status CheckBox
+		//- Set up Status CheckBox
 	
-		final CheckBox statusView = null;
-		
+		final CheckBox statusView = (CheckBox)itemLayout.findViewById(R.id.statusCheckBox);
+		if(toDoItem.getStatus() == Status.DONE)
+			statusView.setChecked(true);
+		else
+			statusView.setChecked(false);
 		
 		statusView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -112,10 +122,15 @@ public class ToDoListAdapter extends BaseAdapter {
 					boolean isChecked) {
 				log("Entered onCheckedChanged()");
 				
-				// TODO - Set up and implement an OnCheckedChangeListener, which 
+				//- Set up and implement an OnCheckedChangeListener, which 
 				// is called when the user toggles the status checkbox
 
-
+				if (toDoItem.getStatus().equals(Status.DONE)) { 
+			          toDoItem.setStatus(Status.NOTDONE); 
+				}else
+				{
+					toDoItem.setStatus(Status.DONE);
+				}
 			
 			}
 		});
