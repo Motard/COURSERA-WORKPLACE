@@ -29,6 +29,8 @@ import com.android.deskclock.R;
 /**
  * Simple widget to show analog clock.
  */
+
+
 public class AnalogAppWidgetProvider extends BroadcastReceiver {
     static final String TAG = "AnalogAppWidgetProvider";
 
