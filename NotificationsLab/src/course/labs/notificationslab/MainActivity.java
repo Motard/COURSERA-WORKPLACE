@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements SelectionListener {
 
@@ -44,6 +45,8 @@ public class MainActivity extends Activity implements SelectionListener {
 	private String[] mRawFeeds = new String[3];
 	private String[] mProcessedFeeds = new String[3];
 
+	public static int RESULT_OK = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,17 +83,17 @@ public class MainActivity extends Activity implements SelectionListener {
 
 		if (!mIsFresh) {
 
-			// TODO:
+			
 			// Show a Toast Notification to inform user that 
 			// the app is "Downloading Tweets from Network"
 			log ("Issuing Toast Message");
-
+			Toast.makeText(getApplicationContext(), "Downloading Tweets from Network", Toast.LENGTH_SHORT).show();
 			
 			
 			// TODO:
 			// Start new AsyncTask to download Tweets from network
-
-
+			new DownloaderTask(MainActivity.this).execute(URL_TSWIFT,URL_RBLACK,URL_LGAGA);
+			//new String[]{}
 
 			
 			// Set up a BroadcastReceiver to receive an Intent when download
@@ -105,7 +108,9 @@ public class MainActivity extends Activity implements SelectionListener {
 					// Check to make sure this is an ordered broadcast
 					// Let sender know that the Intent was received
 					// by setting result code to RESULT_OK
-
+					
+					if (isOrderedBroadcast())
+						setResultCode(RESULT_OK);
 
 				}
 			};
@@ -179,7 +184,8 @@ public class MainActivity extends Activity implements SelectionListener {
 		// TODO:
 		// Register the BroadcastReceiver to receive a 
 		// DATA_REFRESHED_ACTION broadcast
-
+		IntentFilter filter = new IntentFilter(DATA_REFRESHED_ACTION);
+		registerReceiver(mRefreshReceiver,filter);
 
 		
 	}
@@ -189,7 +195,8 @@ public class MainActivity extends Activity implements SelectionListener {
 
 		// TODO:
 		// Unregister the BroadcastReceiver
-
+		if(mRefreshReceiver != null)
+			unregisterReceiver(mRefreshReceiver);
 
 		
 		
